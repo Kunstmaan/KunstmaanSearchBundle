@@ -15,7 +15,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.0.*",
-        "kunstmaan/admin-bundle": "1.0.*",
+        "kunstmaan/admin-bundle": "1.1.*",
         "exercise/elastica-bundle": "2.0.*"
     },
     "autoload": {
