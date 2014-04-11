@@ -64,12 +64,20 @@ class ElasticaProvider implements SearchProviderInterface
 
     public function deleteDocument($indexName, $indexType, $uid)
     {
+        $ids = array($uid);
+        $this->deleteDocuments($ids, $indexName, $indexType);
+    }
 
+    public function deleteDocuments(array $ids, $indexName, $indexType)
+    {
+        $index = $this->getIndex($indexName);
+        $type = $index->getType($indexType);
+        $this->getClient()->deleteIds($ids, $index, $type);
     }
 
     public function deleteIndex($indexName)
     {
-
+        $this->getIndex($indexName)->delete();
     }
 
     public function addNode($host, $port)
