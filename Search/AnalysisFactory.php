@@ -47,6 +47,22 @@ class AnalysisFactory
         return $this;
     }
 
+    public function addSuggestionAnalyzer($lang)
+    {
+        $this->analyzers['suggestion_analyzer_' . $lang] = array(
+            'type' => 'custom',
+            'tokenizer' => 'whitespace',
+            'filter' => array('trim', 'lowercase', 'asciifolding', 'strip_special_chars')
+        );
+
+        //add dependencies
+        $this
+            ->addStripSpecialCharsFilter()
+            ->addNGramFilter();
+
+        return $this;
+    }
+
     public function addNGramFilter()
     {
         $this->filters["ngram"] = array(
