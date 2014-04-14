@@ -48,7 +48,6 @@ class ElasticaProvider implements SearchProviderInterface
     public function createDocument($uid, $data, $type = '', $index = '')
     {
         return new Document($uid, $data, $type, $index);
-
     }
 
     public function addDocument($indexName, $indexType, $data, $uid)
@@ -84,10 +83,4 @@ class ElasticaProvider implements SearchProviderInterface
     {
         $this->nodes[] = array('host' => $host, 'port' => $port);
     }
-
-    public function search($indexName, $indexType, $querystring, $json = false, $from = null, $size = null)
-    {
-
-    }
-
-} 
+}
