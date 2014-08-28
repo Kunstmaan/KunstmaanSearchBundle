@@ -18,22 +18,22 @@ class SearchProviderCompilerPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('kunstmaan_search.searchprovider_chain')) {
+        if (!$container->hasDefinition('kunstmaan_search.search_provider_chain')) {
             return;
         }
 
         $definition = $container->getDefinition(
-            'kunstmaan_search.searchprovider_chain'
+            'kunstmaan_search.search_provider_chain'
         );
 
         $taggedServices = $container->findTaggedServiceIds(
-            'kunstmaan_search.searchprovider'
+            'kunstmaan_search.search_provider'
         );
         foreach ($taggedServices as $id => $tagAttributes) {
             foreach ($tagAttributes as $attributes) {
                 $definition->addMethodCall(
-                    'addSearchProvider',
-                    array(new Reference($id), $attributes["alias"])
+                    'addProvider',
+                    array(new Reference($id), $attributes['alias'])
                 );
             }
         }
